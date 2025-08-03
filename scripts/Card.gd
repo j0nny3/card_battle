@@ -10,6 +10,7 @@ signal used
 @export var description: String
 @export var effect: Callable
 @export var number: int
+@export var number2: int
 @export var blockable: bool
 @export var blocks: bool
 

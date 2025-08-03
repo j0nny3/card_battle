@@ -20,8 +20,9 @@
 		"name": "dagger_stab",
 		"description": "deals 0-3 damage",
 		"effect": "stab",
-		"cost": 2,
-		"number": 2
+		"cost": 1,
+		"number": 0,
+		"number2": 3
 	},
 	{
 		"id": "block",

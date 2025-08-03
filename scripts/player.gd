@@ -30,6 +30,11 @@ func take_damage(number):
 	if health <= 0:
 		die()
 
+func take_damage_range(min, max):
+	health-=randi_range(min, max)
+	health_changed.emit(health, max_health)
+	if health <= 0:
+		die()
 func heal(number):
 	health+=number
 

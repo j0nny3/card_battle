@@ -6,8 +6,8 @@ var effects = {
 	"none": func(user, target, n): return,
 	"strike": func(user, target, n): target.take_damage(n),
 	"heal": func(user, target, n): user.heal(n),
-	"block": func(user, target, n): user.block(n),
-	"stab": func(user, target, n): user.heal(n),
+	"block": func(user, target, n): return,
+	"stab": func(user, target, n, m): user.take_damage_range(n,m),
 	"draw": func (user,target, n): CardManager.draw(user, n),
 }
 
@@ -29,10 +29,12 @@ func load_card_database():
 		card.cost = entry.get("cost", 0)
 		card.description = entry.get("description", "")
 		card.effect = get_effect(entry.get("effect", "none"))
-		card.number= entry.get("number")
+		card.number= entry.get("number",0)
+		card.number2= entry.get("number2",0)
 		card.blockable= entry.get("blockable", false)
 		card.blocks= entry.get("blocks", false)
 		card_db[card.id] = card
+	file.close()
 
 func get_card(id: String) -> Card:
 	return card_db.get(id, null)
