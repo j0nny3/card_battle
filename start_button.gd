@@ -1,6 +1,6 @@
 extends Button
 
-var battle_scene_string = "res://scenes/Battle.tscn"
+var battle_scene_string = "res://scenes/battle.tscn"
 
 func _ready():
 	pressed.connect(_on_button_pressed)

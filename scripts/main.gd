@@ -1,7 +1,7 @@
 extends Node
 
-var battle_scene = preload("res://scenes/Battle.tscn")
-var menu_scene = preload("res://scenes/Menu.tscn")
+var battle_scene = preload("res://scenes/battle.tscn")
+var menu_scene = preload("res://scenes/menu.tscn")
 var load_scene = preload("res://scenes/loading.tscn")
 var host_scene = preload("res://scenes/host_ui.tscn")
 

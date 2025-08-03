@@ -56,6 +56,9 @@ func create_game():
 	players[1] = player_info
 	player_connected.emit(1, player_info)
 	print("created game")
+	await get_tree().create_timer(20.0).timeout
+	load_game.rpc("res://scenes/battle.tscn")
+	print("started")
 
 
 func remove_multiplayer_peer():

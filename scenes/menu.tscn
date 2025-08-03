@@ -23,8 +23,9 @@ offset_bottom = 86.0
 layout_mode = 2
 text = "Server adress to join"
 
-[node name="LineEdit" type="LineEdit" parent="JoinOptions"]
+[node name="AddresEdit" type="LineEdit" parent="JoinOptions"]
 layout_mode = 2
+text = "cardbattle.duckdns.org"
 placeholder_text = "cardbattle.duckdns.org"
 
 [node name="Label2" type="Label" parent="JoinOptions"]
