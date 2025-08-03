@@ -4,7 +4,9 @@ extends Resource
 signal played
 signal used
 
+
 @export var id: String
+@export var instance_id: int
 @export var name: String
 @export var cost: int
 @export var description: String

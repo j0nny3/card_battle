@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx0lksnaa5nvm"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_q46yr"]
+[ext_resource type="Script" path="res://scenes/offline_button.gd" id="2_iod4m"]
+[ext_resource type="Script" path="res://scenes/join_button.gd" id="2_w4u1s"]
+[ext_resource type="Script" path="res://scenes/host_button.gd" id="3_n2pil"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q46yr")
+
+[node name="JoinOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="JoinOptions"]
+layout_mode = 2
+text = "Server adress to join"
+
+[node name="LineEdit" type="LineEdit" parent="JoinOptions"]
+layout_mode = 2
+placeholder_text = "cardbattle.duckdns.org"
+
+[node name="Label2" type="Label" parent="JoinOptions"]
+layout_mode = 2
+text = "Player Name"
+
+[node name="NameEdit" type="LineEdit" parent="JoinOptions"]
+layout_mode = 2
+placeholder_text = "Player"
+
+[node name="JoinButton" type="Button" parent="JoinOptions"]
+layout_mode = 2
+text = "Join"
+script = ExtResource("2_w4u1s")
+
+[node name="OfflineButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 75.0
+offset_right = 444.0
+offset_bottom = 106.0
+text = "Play offline"
+script = ExtResource("2_iod4m")
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 247.0
+offset_right = 93.0
+offset_bottom = 278.0
+text = "Host game
+"
+script = ExtResource("3_n2pil")

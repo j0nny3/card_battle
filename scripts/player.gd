@@ -6,6 +6,7 @@ signal mana_changed
 
 enum Type{HUMAN, NPC}
 
+var id: int
 var health: int = 10
 var armour: int = 0
 var max_health: int = 10
@@ -20,6 +21,7 @@ var deck = Deck.new()
 var active_cards: Array[Card]
 
 var type: Type
+var turn_ended= false
 
 func _init(_type):
 	type = _type

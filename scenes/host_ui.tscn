@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3q4u4215d4k"]
+
+[ext_resource type="Script" path="res://player_list.gd" id="1_dtdk5"]
+[ext_resource type="Script" path="res://start_button.gd" id="2_tim1q"]
+
+[node name="HostUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerList" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 107.0
+offset_right = 215.0
+offset_bottom = 214.0
+script = ExtResource("1_dtdk5")
+
+[node name="Label" type="Label" parent="PlayerList"]
+layout_mode = 2
+text = "Players connected:"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 122.0
+offset_right = 444.0
+offset_bottom = 153.0
+text = "Start Game
+"
+script = ExtResource("2_tim1q")

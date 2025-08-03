@@ -31,5 +31,13 @@
 		"effect": "block",
 		"cost": 1,
 		"number": 2
+	},
+	{
+		"id": "reload",
+		"name": "Reload",
+		"description": "Draws 2 cards",
+		"effect": "draw",
+		"cost": 1,
+		"number": 2
 	}
 ]
