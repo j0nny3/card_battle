@@ -11,10 +11,10 @@ var username: String
 var health: int = 10
 var armour: int = 0
 var max_health: int = 10
-var current_mana: int = 3:
+var mana: int = 3:
 	set(new_value):
-		current_mana = new_value
-		mana_changed.emit(current_mana, max_mana)
+		mana = new_value
+		mana_changed.emit(mana, max_mana)
 var max_mana= 10
 
 var hand = []

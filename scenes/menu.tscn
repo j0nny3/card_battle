@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dx0lksnaa5nvm"]
 
-[ext_resource type="Script" path="res://scenes/menu.gd" id="1_q46yr"]
-[ext_resource type="Script" path="res://scenes/offline_button.gd" id="2_iod4m"]
-[ext_resource type="Script" path="res://scenes/join_button.gd" id="2_w4u1s"]
-[ext_resource type="Script" path="res://scenes/host_button.gd" id="3_n2pil"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_q46yr"]
+[ext_resource type="Script" path="res://scripts/offline_button.gd" id="2_iod4m"]
+[ext_resource type="Script" path="res://scripts/join_button.gd" id="2_w4u1s"]
+[ext_resource type="Script" path="res://scripts/host_button.gd" id="3_n2pil"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3

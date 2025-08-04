@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://tpn4i7tqquxj"]
+[gd_scene load_steps=8 format=3 uid="uid://tpn4i7tqquxj"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_kix5h"]
-[ext_resource type="Script" path="res://scenes/player_health_bar.gd" id="2_0pv4u"]
-[ext_resource type="Script" path="res://scenes/enemy_health_bar.gd" id="3_dku0a"]
-[ext_resource type="Script" path="res://scenes/mana.gd" id="3_pq6hk"]
-[ext_resource type="Script" path="res://scenes/end_button.gd" id="4_uqxqr"]
-[ext_resource type="Script" path="res://scenes/enemy_mana.gd" id="5_sacqi"]
+[ext_resource type="Script" path="res://scripts/player_health_bar.gd" id="2_0pv4u"]
+[ext_resource type="Script" path="res://scripts/enemy_health_bar.gd" id="3_dku0a"]
+[ext_resource type="Script" path="res://scripts/mana.gd" id="3_pq6hk"]
+[ext_resource type="Script" path="res://scripts/end_button.gd" id="4_uqxqr"]
+[ext_resource type="Script" path="res://scripts/enemy_mana.gd" id="5_sacqi"]
+[ext_resource type="Script" path="res://scenes/hand_ui.gd" id="6_qg8jb"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_kix5h")
@@ -109,6 +110,11 @@ size_flags_vertical = 1
 show_percentage = false
 script = ExtResource("5_sacqi")
 
+[node name="Label" type="Label" parent="UI/VBoxContainer3/HBoxContainer/EnemyMana"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="HandUI" type="HBoxContainer" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = -1
@@ -118,6 +124,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
+script = ExtResource("6_qg8jb")
 metadata/_edit_use_anchors_ = true
 
 [node name="EndButton" type="Button" parent="UI"]
