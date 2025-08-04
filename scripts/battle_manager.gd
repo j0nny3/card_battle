@@ -31,7 +31,7 @@ func request_end_turn():
 		return
 
 	ServerState.players.get(multiplayer.get_remote_sender_id()).ended_turn = true
-	if ServerState.players.values().all(func(player): player.ended_turn):
+	if ServerState.players.values().all(func(player): return player.ended_turn):
 	#if player2.type == Player.Type.NPC:
 	#	simulate_enemy_card()
 		ServerState.turn_ended = true
@@ -40,27 +40,22 @@ func request_end_turn():
 			var player = ServerState.players.get(id)
 			card_id_list[id] = player.active_cards
 
-		end_turn(card_id_list)
+		end_turn()
 		ServerState.turn_ended=false
 
-@rpc("reliable", "call_remote", "any_peer")
-func display_cards(card_id_list):
-	for id in card_id_list:
-		var card = CardManager.card_db.get(id)
-		card_played.emit(card, false)
-
 # server
-func end_turn(card_id_list):
-	display_cards.rpc(card_id_list)
+func end_turn():
+	ServerState.reveal_enemy_active_cards()
 
 	await get_tree().create_timer(3.0).timeout
 
 	resolve_cards()
 
-	for player_id in ServerState.players:
-		draw_cards(player_id)
-		ServerState.sync_data(player_id)
-		ServerState.players.get(player_id).mana+=1
+	for player in ServerState.players.values():
+		player.ended_turn = false
+		draw_cards(player.id)
+		ServerState.players.get(player.id).mana+=1
+		ServerState.sync_data(player.id)
 	print("turn ended")
 
 func draw_cards(player_id, n=1):
@@ -79,6 +74,7 @@ func request_play_card(card_id):
 		for hand_card in caller.hand:
 			if hand_card.id == card_id:
 				caller.hand.erase(hand_card)
+				break
 	ServerState.sync_data(caller.id)
 
 func simulate_enemy_card():
@@ -89,12 +85,14 @@ func simulate_enemy_card():
 func resolve_cards():
 	for id in ServerState.players:
 		for card in ServerState.players.get(id).active_cards:
-			resolve_card(card,ServerState.players[id])
+			resolve_card(card ,ServerState.players[id])
 			card.used.emit()
-	for player in ServerState.players:
+	for player in ServerState.players.values():
 		player.active_cards.clear()
 
 func resolve_card(card, own_player):
-	if card.blockable and get_enemy_of(own_player).active_card.any(func(_card): card.blocks):
+	if card.blockable and get_enemy_of(own_player).active_cards.any(func(_card): return card.blocks):
+		return
+	if card.risky and get_enemy_of(own_player).active_cards.any(func(_card): return  card.blockable):
 		return
 	card.effect.call(own_player,get_enemy_of(own_player), card.number, card.number2)

@@ -13,6 +13,7 @@ var effects = {
 	"block": func(user, target, n, m): return,
 	"stab": func(user, target, n, m): user.take_damage_range(n,m),
 	"draw": func (user,target, n,  m): CardManager.draw(user, n),
+	"mana_gain": func (user,target, n,  m): user.mana+=n ,
 }
 
 func get_effect(id: String) -> Callable:
@@ -39,6 +40,7 @@ func load_card_database():
 		card.number2= entry.get("number2",0)
 		card.blockable= entry.get("blockable", false)
 		card.blocks= entry.get("blocks", false)
+		card.risky= entry.get("risky", false)
 		card_db[card.id] = card
 
 func load_deck(player):

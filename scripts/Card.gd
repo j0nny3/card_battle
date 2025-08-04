@@ -15,6 +15,7 @@ signal used
 @export var number2: int
 @export var blockable: bool
 @export var blocks: bool
+@export var risky: bool
 
 func print_info():
 	print(id + name + str(cost) + description )

@@ -25,6 +25,24 @@
 		"number2": 3
 	},
 	{
+		"id": "innervate",
+		"name": "innervate",
+		"description": "gains 7 mana",
+		"effect": "mana_gain",
+		"cost": 5,
+		"number": 7
+	},
+	{
+		"id": "axe_swing",
+		"name": "axe swing",
+		"description": "Deals 4 damage when not taking damage",
+		"effect": "strike",
+		"cost": 2,
+		"number": 4,
+		"blockable": true,
+		"risky": true
+	},
+	{
 		"id": "block",
 		"name": "shield_block",
 		"description": "blocks incoming damage",

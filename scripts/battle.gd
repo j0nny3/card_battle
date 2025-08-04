@@ -16,6 +16,8 @@ func _on_hand_changed(cards):
 
 
 func _on_active_cards_changed(cards: Array[Card]):
+	for child in active_area_slot.get_children():
+		child.queue_free()
 	for card in cards:
 		var card_scene = preload("res://scenes/card.tscn")
 		var card_instance = card_scene.instantiate()
@@ -24,6 +26,8 @@ func _on_active_cards_changed(cards: Array[Card]):
 		card_instance.is_in_hand=false
 
 func _on_enemy_active_cards_changed(cards: Array[Card]):
+	for child in enemy_active_area_slot.get_children():
+		child.queue_free()
 	for card in cards:
 		var card_scene = preload("res://scenes/card.tscn")
 		var card_instance = card_scene.instantiate()

@@ -7,9 +7,14 @@ func get_player_data_as_dict(player_id) -> Dictionary:
 	var player = players.get(player_id)
 	var data = {}
 	data["health"] = player.health
-	data["enemy_health"] = 10
+
+	if BattleManager.get_enemy_of(player):
+		data["enemy_health"] = BattleManager.get_enemy_of(player).health
+		
 	data["mana"] = player.mana
-	data["enemy_mana"] = 10
+
+	if BattleManager.get_enemy_of(player):
+		data["enemy_mana"] = BattleManager.get_enemy_of(player).mana
 
 	var hand_card_id_list: Array
 	for card in player.hand :
@@ -30,7 +35,7 @@ func sync_data(player_id):
 	
 func reveal_enemy_active_cards():
 	var data = {}
-	for player in players:
+	for player in players.values():
 		if BattleManager.get_enemy_of(player) :
 			var enemy_active_card_id_list: Array
 			for card in BattleManager.get_enemy_of(player).active_cards :

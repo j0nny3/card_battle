@@ -55,7 +55,7 @@ var enemy_max_mana = 10
 var enemy_max_health = 10:
 	set(new_value):
 		enemy_health = new_value
-		enemy_health_changed.emit(enemy_health, max_health)
+		enemy_max_health_changed.emit(max_health)
 
 @rpc("reliable", "any_peer","call_remote")
 func reveal(data: Dictionary):
@@ -69,9 +69,9 @@ func reveal(data: Dictionary):
 @rpc("reliable", "any_peer","call_remote")
 func sync(data: Dictionary):
 	health=data.get("health")
-	enemy_health=data.get("enemy_health")
+	enemy_health=data.get("enemy_health", 10)
 	mana=data.get("mana")
-	enemy_mana=data.get("enemy_mana")
+	enemy_mana=data.get("enemy_mana", 3)
 
 	var hand_ids=data.get("hand")
 	var new_hand : Array[Card]
