@@ -4,9 +4,8 @@ extends ProgressBar
 
 func _ready():
 	min_value=0
-	value=BattleManager.player2.health
-	max_value=BattleManager.player2.health
-	BattleManager.player2.health_changed.connect(_on_enemy_health_changed)
+	max_value=ClientState.enemy_health
+	ClientState.enemy_health.health_changed.connect(_on_enemy_health_changed)
 	label.text= str(value) + " / " + str(max_value)
 
 func _on_enemy_health_changed(current_health, max_health):

@@ -68,7 +68,7 @@ func remove_multiplayer_peer():
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
-@rpc("call_local", "reliable")
+@rpc( "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 
@@ -106,7 +106,6 @@ func _on_player_disconnected(id):
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
-	BattleManager.player1.id=multiplayer.get_unique_id()
 	player_connected.emit(peer_id, player_info)
 
 

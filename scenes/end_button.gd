@@ -5,6 +5,6 @@ func _ready():
 
 func _on_button_pressed():
 	if multiplayer.has_multiplayer_peer():
-		BattleManager.end_turn.rpc()
+		BattleManager.request_end_turn.rpc()
 	else:
-		BattleManager.end_turn()
+		BattleManager.request_end_turn()

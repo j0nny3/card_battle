@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 BattleManager="*res://scripts/battle_manager.gd"
 CardManager="*res://scripts/card_manager.gd"
 NetworkManager="*res://scripts/network_manager.gd"
+ClientState="*res://scripts/client_state.gd"
 
 [rendering]
 

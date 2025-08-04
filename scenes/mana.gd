@@ -3,9 +3,9 @@ extends ProgressBar
 @onready var label =$Label
 
 func _ready():
-	value = BattleManager.player1.current_mana
-	max_value = BattleManager.player1.max_mana
-	BattleManager.player1.mana_changed.connect(_on_player_mana_changed)
+	value = ClientState.current_mana
+	max_value = value
+	ClientState.mana_changed.connect(_on_player_mana_changed)
 	label.text= str(value) + " / " + str(max_value)
 
 func _on_player_mana_changed(current_mana, max_mana):

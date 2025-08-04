@@ -7,6 +7,7 @@ signal mana_changed
 enum Type{HUMAN, NPC}
 
 var id: int
+var username: String
 var health: int = 10
 var armour: int = 0
 var max_health: int = 10
@@ -17,6 +18,7 @@ var current_mana: int = 3:
 var max_mana= 10
 
 var hand = []
+# server
 var deck = Deck.new()
 var active_cards: Array[Card]
 

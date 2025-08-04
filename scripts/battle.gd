@@ -7,7 +7,6 @@ func _ready():
 	BattleManager.card_played.connect(_on_card_played)
 	CardManager.drawn.connect(_on_player_draw)
 
-	CardManager.load_decks()
 	CardManager.draw(BattleManager.player1, 5)
 	CardManager.draw(BattleManager.player2, 5)
 

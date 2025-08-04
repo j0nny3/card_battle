@@ -21,6 +21,7 @@ func get_effect(id: String) -> Callable:
 func _ready():
 	load_card_database()
 
+@rpc("reliable", "authority")
 func load_card_database():
 	var file = FileAccess.open("res://cards/cards.json", FileAccess.READ)
 	var text = file.get_as_text()
@@ -33,36 +34,30 @@ func load_card_database():
 		card.name = entry.get("name", "")
 		card.cost = entry.get("cost", 0)
 		card.description = entry.get("description", "")
-		card.effect = get_effect(entry.get("effect", "none"))
+		card.effect = effects.get(entry.get("effect", "none"))
 		card.number= entry.get("number",0)
 		card.number2= entry.get("number2",0)
 		card.blockable= entry.get("blockable", false)
 		card.blocks= entry.get("blocks", false)
 		card_db[card.id] = card
 
-func get_card(id: String) -> Card:
-	return card_db.get(id, null)
+func load_deck(player):
+	for count in 40:
+		var card_id = card_db.keys().pick_random()
+		var card = card_db[card_id]
+		var card_duplicate = card.duplicate()
+		instance_id+=1
+		card_duplicate.instance_id= instance_id
+		player.deck.cards.append(card_duplicate) 
+	player.deck.cards.shuffle()
 
-func load_decks():
-	for player in BattleManager.players:
-
-		for count in 40:
-			var card_id = card_db.keys().pick_random()
-			var card = card_db[card_id]
-			var card_duplicate = card.duplicate()
-			instance_id+=1
-			card_duplicate.instance_id= instance_id
-			player.deck.cards.append(card_duplicate) 
-		player.deck.cards.shuffle()
-			
 func draw(player, n=1):
 	var drawn_cards = player.deck.cards.slice(0, n)
 	player.hand.append_array(drawn_cards)
 	player.deck.cards = player.deck.cards.slice(n)
-	drawn.emit(player, drawn_cards)
 
 func get_card_by_instance_id(id):
-	for player in BattleManager.players :
+	for player in BattleManager.player_dict :
 		for card in player.hand:
 			if card.instance_id == id:
 				return card
