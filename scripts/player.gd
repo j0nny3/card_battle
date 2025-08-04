@@ -23,7 +23,7 @@ var deck = Deck.new()
 var active_cards: Array[Card]
 
 var type: Type
-var turn_ended= false
+var ended_turn= false
 
 func _init(_type):
 	type = _type

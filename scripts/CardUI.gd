@@ -20,8 +20,7 @@ func update_ui():
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("clicked cardUI")
-		BattleManager.request_play_card.rpc(BattleManager.player1, card.instance_id)
+		BattleManager.request_play_card.rpc_id(1,card.id)
 	
 func _on_card_played():
 	if is_in_hand:

@@ -21,11 +21,6 @@ func get_player_data_as_dict(player_id) -> Dictionary:
 		active_card_id_list.append(card.id)
 	data["active_cards"] = active_card_id_list
 
-	var enemy_active_card_id_list: Array
-	for card in BattleManager.get_enemy_of(player).active_cards :
-		enemy_active_card_id_list.append(card.id)
-	data["enemy_active_cards"] = enemy_active_card_id_list
-
 	return data
 
 func sync_data(player_id):
@@ -33,3 +28,14 @@ func sync_data(player_id):
 	print("sync data to player: " +str(player_id)+ " with data: "+str(data))
 	ClientState.sync.rpc_id(player_id, data)
 	
+func reveal_enemy_active_cards():
+	var data = {}
+	for player in players:
+		if BattleManager.get_enemy_of(player) :
+			var enemy_active_card_id_list: Array
+			for card in BattleManager.get_enemy_of(player).active_cards :
+				enemy_active_card_id_list.append(card.id)
+			data["enemy_active_cards"] = enemy_active_card_id_list
+			ClientState.reveal.rpc_id(player.id, data)
+
+

@@ -12,7 +12,8 @@ func _on_player_connected(peer_id, player_info):
 	add_child(label)
 	connected_player_labels.append(label)
 
-func _on_player_disconnected(peer_id, player_info):
+func _on_player_disconnected(peer_id):
 	for label in connected_player_labels:
-		if label.text == str(peer_id)+ ": "+ player_info["name"] :
-			label.queue_free()
+		if label.text.begins_with(str(peer_id))  :
+			return
+			#label.queue_free()

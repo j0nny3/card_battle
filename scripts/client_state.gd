@@ -26,16 +26,17 @@ var mana: int = 3:
 		mana = new_value
 		mana_changed.emit(mana, max_mana)
 var max_mana= 10
-var hand = []:
+var hand: Array[Card]:
 	set(new_value):
+		print("set hand")
 		hand = new_value
 		hand_changed.emit(hand)
-var active_cards: Array:
+var active_cards: Array[Card]:
 	set(new_value):
 		active_cards = new_value
 		active_cards_changed.emit(active_cards)
 
-var enemy_active_cards: Array:
+var enemy_active_cards: Array[Card]:
 	set(new_value):
 		enemy_active_cards = new_value
 		enemy_active_cards_changed.emit(enemy_active_cards)
@@ -57,6 +58,15 @@ var enemy_max_health = 10:
 		enemy_health_changed.emit(enemy_health, max_health)
 
 @rpc("reliable", "any_peer","call_remote")
+func reveal(data: Dictionary):
+	var enemy_active_ids=data.get("enemy_active_cards", [])
+	var new_enemy_active: Array[Card]
+	for id in enemy_active_ids:
+		new_enemy_active.append(CardManager.card_db.get(id))
+	enemy_active_cards = new_enemy_active
+
+
+@rpc("reliable", "any_peer","call_remote")
 func sync(data: Dictionary):
 	health=data.get("health")
 	enemy_health=data.get("enemy_health")
@@ -64,19 +74,19 @@ func sync(data: Dictionary):
 	enemy_mana=data.get("enemy_mana")
 
 	var hand_ids=data.get("hand")
-	var new_hand = []
+	var new_hand : Array[Card]
 	for id in hand_ids:
 		new_hand.append(CardManager.card_db.get(id))
 	hand = new_hand
 
 	var active_ids=data.get("active_cards")
-	var new_active = []
+	var new_active : Array[Card]
 	for id in active_ids:
 		new_active.append(CardManager.card_db.get(id))
 	active_cards = new_active
 
-	var enemy_active_ids=data.get("enemy_active_cards")
-	var new_enemy_active = []
+	var enemy_active_ids=data.get("enemy_active_cards", [])
+	var new_enemy_active: Array[Card]
 	for id in enemy_active_ids:
 		new_enemy_active.append(CardManager.card_db.get(id))
 	enemy_active_cards = new_enemy_active
