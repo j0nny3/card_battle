@@ -3,6 +3,11 @@ extends Node
 var players = {}
 var turn_ended = false
 
+func reset_state():
+	turn_ended = false
+	for player_id in players.keys():
+		players.erase(player_id)
+
 func get_player_data_as_dict(player_id) -> Dictionary:
 	var player = players.get(player_id)
 	var data = {}

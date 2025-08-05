@@ -55,6 +55,7 @@ func end_turn():
 		player.ended_turn = false
 		draw_cards(player.id)
 		ServerState.players.get(player.id).mana+=1
+	for player in ServerState.players.values():
 		ServerState.sync_data(player.id)
 	print("turn ended")
 
