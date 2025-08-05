@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://0ln8dg6q8xa3"]
+
+[ext_resource type="PackedScene" uid="uid://dm7yd5a8lyhhf" path="res://scenes/player_list.tscn" id="1_wqigo"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerList" parent="." instance=ExtResource("1_wqigo")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 136.0
+offset_right = 146.0
+offset_bottom = 243.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 366.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 64
+text = "Official Lobby"

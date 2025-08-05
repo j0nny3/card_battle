@@ -15,5 +15,4 @@ func _on_player_connected(peer_id, player_info):
 func _on_player_disconnected(peer_id):
 	for label in connected_player_labels:
 		if label.text.begins_with(str(peer_id))  :
-			return
-			#label.queue_free()
+			label.queue_free()

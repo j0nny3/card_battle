@@ -4,6 +4,7 @@ var battle_scene = preload("res://scenes/battle.tscn")
 var menu_scene = preload("res://scenes/menu.tscn")
 var load_scene = preload("res://scenes/loading.tscn")
 var host_scene = preload("res://scenes/host_ui.tscn")
+var lobby_scene = preload("res://scenes/lobby.tscn")
 
 func _ready():
 	var menu = menu_scene.instantiate()
@@ -21,6 +22,8 @@ func _on_mode_chosen(mode):
 	if mode == "join":
 		var load_instance = load_scene.instantiate()
 		add_child(load_instance)
-
+	if mode == "official":
+		var load_instance = lobby_scene.instantiate()
+		add_child(load_instance)
 
 

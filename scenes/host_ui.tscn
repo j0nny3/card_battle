@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3q4u4215d4k"]
 
-[ext_resource type="Script" path="res://scripts/player_list.gd" id="1_dtdk5"]
+[ext_resource type="PackedScene" uid="uid://dm7yd5a8lyhhf" path="res://scenes/player_list.tscn" id="1_cjm4w"]
 [ext_resource type="Script" path="res://scripts/start_button.gd" id="2_tim1q"]
 
 [node name="HostUI" type="Control"]
@@ -11,17 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerList" type="VBoxContainer" parent="."]
+[node name="PlayerList" parent="." instance=ExtResource("1_cjm4w")]
 layout_mode = 0
-offset_left = 133.0
-offset_top = 107.0
-offset_right = 215.0
-offset_bottom = 214.0
-script = ExtResource("1_dtdk5")
-
-[node name="Label" type="Label" parent="PlayerList"]
-layout_mode = 2
-text = "Players connected:"
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 82.0
+offset_bottom = 107.0
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0

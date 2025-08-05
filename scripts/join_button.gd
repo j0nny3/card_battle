@@ -10,4 +10,4 @@ func _on_button_pressed():
 	if not name :
 		name =get_parent().get_node("NameEdit").placeholder_text 
 	NetworkManager.player_info["name"] = name
-	NetworkManager.join_game(address)
+	var error =NetworkManager.join_game(address)

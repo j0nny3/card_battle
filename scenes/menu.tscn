@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx0lksnaa5nvm"]
+[gd_scene load_steps=7 format=3 uid="uid://dx0lksnaa5nvm"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q46yr"]
 [ext_resource type="Script" path="res://scripts/offline_button.gd" id="2_iod4m"]
 [ext_resource type="Script" path="res://scripts/join_button.gd" id="2_w4u1s"]
 [ext_resource type="Script" path="res://scripts/host_button.gd" id="3_n2pil"]
+[ext_resource type="Script" path="res://scenes/official_join_button.gd" id="5_5ts3p"]
+
+[sub_resource type="Theme" id="Theme_nknp2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,16 +19,18 @@ script = ExtResource("1_q46yr")
 
 [node name="JoinOptions" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 93.0
-offset_bottom = 86.0
+offset_left = 859.0
+offset_top = 8.0
+offset_right = 1003.0
+offset_bottom = 163.0
 
 [node name="Label" type="Label" parent="JoinOptions"]
 layout_mode = 2
-text = "Server adress to join"
+text = "Join custom server"
 
 [node name="AddresEdit" type="LineEdit" parent="JoinOptions"]
 layout_mode = 2
-placeholder_text = "cardbattle.duckdns.org"
+placeholder_text = "adress"
 
 [node name="Label2" type="Label" parent="JoinOptions"]
 layout_mode = 2
@@ -42,19 +47,61 @@ script = ExtResource("2_w4u1s")
 
 [node name="OfflineButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 349.0
-offset_top = 75.0
-offset_right = 444.0
-offset_bottom = 106.0
+offset_left = 446.0
+offset_top = 587.0
+offset_right = 541.0
+offset_bottom = 618.0
 text = "Play offline"
 script = ExtResource("2_iod4m")
 
+[node name="Label" type="Label" parent="OfflineButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 35.0
+offset_right = 97.0
+offset_bottom = 93.0
+text = "(Disabled for now)
+"
+
 [node name="HostButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 247.0
-offset_right = 93.0
-offset_bottom = 278.0
+offset_left = 888.0
+offset_top = 567.0
+offset_right = 979.0
+offset_bottom = 598.0
 text = "Host game
 "
 script = ExtResource("3_n2pil")
+
+[node name="Label" type="Label" parent="HostButton"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 43.0
+offset_right = 212.0
+offset_bottom = 131.0
+text = "Starts local server at 192.0.0.1"
+
+[node name="OfficialJoinOptions" type="VBoxContainer" parent="."]
+offset_left = 3.0
+offset_top = 32.0
+offset_right = 671.0
+offset_bottom = 270.0
+
+[node name="Label" type="Label" parent="OfficialJoinOptions"]
+layout_mode = 2
+theme = SubResource("Theme_nknp2")
+theme_override_font_sizes/font_size = 64
+text = "Join OFFICIAL™ server"
+
+[node name="Label2" type="Label" parent="OfficialJoinOptions"]
+layout_mode = 2
+text = "Player Name"
+
+[node name="OfficialPlayerName" type="LineEdit" parent="OfficialJoinOptions"]
+layout_mode = 2
+placeholder_text = "Player"
+
+[node name="OfficialJoinButton" type="Button" parent="OfficialJoinOptions"]
+layout_mode = 2
+text = "Join"
+script = ExtResource("5_5ts3p")
