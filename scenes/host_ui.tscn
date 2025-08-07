@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3q4u4215d4k"]
 
+[ext_resource type="Script" path="res://scenes/host_ui.gd" id="1_cgvwy"]
 [ext_resource type="PackedScene" uid="uid://dm7yd5a8lyhhf" path="res://scenes/player_list.tscn" id="1_cjm4w"]
-[ext_resource type="Script" path="res://scripts/start_button.gd" id="2_tim1q"]
 
 [node name="HostUI" type="Control"]
 layout_mode = 3
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cgvwy")
 
 [node name="PlayerList" parent="." instance=ExtResource("1_cjm4w")]
 layout_mode = 0
@@ -26,4 +27,3 @@ offset_right = 444.0
 offset_bottom = 153.0
 text = "Start Game
 "
-script = ExtResource("2_tim1q")

@@ -5,9 +5,11 @@ func _ready():
 
 func _on_button_pressed():
 	var address = get_parent().get_node("AddresEdit").text
-	var name
-	name = get_parent().get_node("NameEdit").text
-	if not name :
-		name =get_parent().get_node("NameEdit").placeholder_text 
-	NetworkManager.player_info["name"] = name
-	var error =NetworkManager.join_game(address)
+	var username
+	username = get_parent().get_node("NameEdit").text
+	if not username :
+		username =get_parent().get_node("NameEdit").placeholder_text 
+	NetworkManager.player_info["name"] = username
+	var error =NetworkManager.join_server(address)
+	if error:
+		print(error)

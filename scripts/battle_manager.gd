@@ -23,7 +23,7 @@ func _on_player_connect(player_id, player_info):
 		print(new_player)
 		draw_cards(player_id, 5)
 
-		ServerState.sync_data(player_id)
+		ServerState.sync_public_data(player_id)
 
 @rpc("any_peer", "reliable")
 func request_end_turn():
@@ -56,7 +56,7 @@ func end_turn():
 		draw_cards(player.id)
 		ServerState.players.get(player.id).mana+=1
 	for player in ServerState.players.values():
-		ServerState.sync_data(player.id)
+		ServerState.sync_public_data(player.id)
 	print("turn ended")
 
 func draw_cards(player_id, n=1):
@@ -76,7 +76,7 @@ func request_play_card(card_id):
 			if hand_card.id == card_id:
 				caller.hand.erase(hand_card)
 				break
-	ServerState.sync_data(caller.id)
+	ServerState.sync_public_data(caller.id)
 
 func simulate_enemy_card():
 	#var card = player2.hand.pick_random()

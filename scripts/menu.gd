@@ -27,5 +27,7 @@ func _on_official_join_pressed():
 	if not username:
 		username = "Player"
 
-	NetworkManager.player_info["username"] = username
-	NetworkManager.join_game(address)
+	NetworkManager.player_info["name"] = username
+	var error = NetworkManager.join_server(address)
+	if error:
+		mode_chosen.emit("error")

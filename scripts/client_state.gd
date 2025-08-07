@@ -47,7 +47,7 @@ var enemy_health = 10:
 	set(new_value):
 		enemy_health = new_value
 		enemy_health_changed.emit(enemy_health, max_health)
-var enemy_mana = 10:
+var enemy_mana = 3:
 	set(new_value):
 		enemy_mana = new_value
 		enemy_mana_changed.emit(enemy_mana, max_mana)

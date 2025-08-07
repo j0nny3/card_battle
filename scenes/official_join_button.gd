@@ -10,5 +10,5 @@ func _on_button_pressed():
 	if not username:
 		username = "Player"
 
-	NetworkManager.player_info["username"] = username
-	NetworkManager.join_game(address)
+	NetworkManager.player_info["name"] = username
+	NetworkManager.join_server(address)

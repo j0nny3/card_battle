@@ -30,7 +30,7 @@ text = "Join custom server"
 
 [node name="AddresEdit" type="LineEdit" parent="JoinOptions"]
 layout_mode = 2
-placeholder_text = "adress"
+placeholder_text = "address"
 
 [node name="Label2" type="Label" parent="JoinOptions"]
 layout_mode = 2
@@ -82,6 +82,7 @@ offset_bottom = 131.0
 text = "Starts local server at 192.0.0.1"
 
 [node name="OfficialJoinOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 32.0
 offset_right = 671.0

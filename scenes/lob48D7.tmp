@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://0ln8dg6q8xa3"]
+[gd_scene load_steps=2 format=3 uid="uid://0ln8dg6q8xa3"]
 
 [ext_resource type="PackedScene" uid="uid://dm7yd5a8lyhhf" path="res://scenes/player_list.tscn" id="1_wqigo"]
-[ext_resource type="Script" path="res://scenes/room.gd" id="2_r7701"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -43,7 +42,6 @@ offset_bottom = 419.0
 
 [node name="Room" type="VBoxContainer" parent="RoomList"]
 layout_mode = 2
-script = ExtResource("2_r7701")
 
 [node name="Label" type="Label" parent="RoomList/Room"]
 layout_mode = 2

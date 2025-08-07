@@ -8,7 +8,7 @@ func reset_state():
 	for player_id in players.keys():
 		players.erase(player_id)
 
-func get_player_data_as_dict(player_id) -> Dictionary:
+func get_public_player_data_as_dict(player_id) -> Dictionary:
 	var player = players.get(player_id)
 	var data = {}
 	data["health"] = player.health
@@ -17,9 +17,6 @@ func get_player_data_as_dict(player_id) -> Dictionary:
 		data["enemy_health"] = BattleManager.get_enemy_of(player).health
 		
 	data["mana"] = player.mana
-
-	if BattleManager.get_enemy_of(player):
-		data["enemy_mana"] = BattleManager.get_enemy_of(player).mana
 
 	var hand_card_id_list: Array
 	for card in player.hand :
@@ -31,10 +28,15 @@ func get_player_data_as_dict(player_id) -> Dictionary:
 		active_card_id_list.append(card.id)
 	data["active_cards"] = active_card_id_list
 
+	#move enemy mana to private method
+	if BattleManager.get_enemy_of(player):
+		data["enemy_mana"] = BattleManager.get_enemy_of(player).mana
+
+
 	return data
 
-func sync_data(player_id):
-	var data = get_player_data_as_dict(player_id)
+func sync_public_data(player_id):
+	var data = get_public_player_data_as_dict(player_id)
 	print("sync data to player: " +str(player_id)+ " with data: "+str(data))
 	ClientState.sync.rpc_id(player_id, data)
 	
