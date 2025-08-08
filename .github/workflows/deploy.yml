@@ -1,24 +1,34 @@
-name: Export and Deploy Godot Web Game
+name: Build Godot HTML5 Export
 
 on:
   push:
-    branches: [main]  # Adjust for your default branch
+    branches: [main] # or your default branch
 
 jobs:
-  export-and-deploy:
+  build-html5:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: godot-ci
-        uses: abarichello/godot-ci@4.4.1-stable
+      - name: Set up Godot
+        uses: firebelley/setup-godot@v1
+        with:
+          version: 4.2.2 # change to your Godot version
+          use-headless: true
+          export-templates: true
 
-      - name: Export project to HTML5
+      - name: Build HTML5 Export
         run: |
           mkdir -p build/web
-          godot --export-release "Web" build/web/index.html
+          godot --headless --export-release "Web" build/web/index.html
+
+      - name: Upload HTML5 Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: godot-web-build
+          path: build/web
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
