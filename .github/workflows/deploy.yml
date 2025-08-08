@@ -22,3 +22,9 @@ jobs:
       - run: |
           mkdir -p build/windows
           godot --headless --export-release "Windows Desktop" build/windows/cardbattle.exe
+
+      - name: Upload exported build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: export-windows-desktop
+          path: build/windows/
