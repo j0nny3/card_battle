@@ -14,6 +14,7 @@ jobs:
         with:
           version: 4.3.0       # your version
           include-templates: true
+          use-dotnet: false
 
       - run: |
           mkdir -p build/web
