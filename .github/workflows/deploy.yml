@@ -30,7 +30,7 @@ jobs:
           name: export-windows-desktop
           path: build/windows/
 
-      - name: Create Release
+      - name: Create Release yo
         id: create_release
         uses: actions/create-release@v1
         with:
