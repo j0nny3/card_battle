@@ -12,7 +12,7 @@ jobs:
 
       - uses: chickensoft-games/setup-godot@v2
         with:
-          version: 4.0.0       # your version
+          version: 4.3.0       # your version
           include-templates: true
 
       - run: |
