@@ -1,6 +1,7 @@
 extends Node
 
 signal room_created(room_id: int)
+signal room_filled(room, users)
 
 var number_of_open_rooms:= 0
 var number_of_filled_rooms:= 0
@@ -17,7 +18,7 @@ func add_user_to_room(user, room) -> bool:
 
 func remove_user_from_rooms(user):
 	for room in rooms:
-		if room.remove_user(user):
+		if rooms.get(room).remove_user(user):
 			break
 	ServerState.players.get(user).room = 0
 	
@@ -28,7 +29,11 @@ func create_room() -> Room:
 	room.id = next_room_id
 	rooms[room.id] = room
 	room_created.emit(next_room_id)
+	room.room_filled.connect(_on_room_filled)
 	return room 
+
+func _on_room_filled(room, users):
+	room_filled.emit(room, users)
 
 func delete_rooom(room):
 	rooms.erase(room)

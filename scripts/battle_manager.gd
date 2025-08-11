@@ -66,8 +66,7 @@ func draw_cards(player_id, n=1):
 func request_play_card(card_id):
 	var caller = ServerState.players.get(multiplayer.get_remote_sender_id()) 
 	var card = CardManager.card_db.get(card_id)
-	var x
-	#x.abs()
+
 	if caller.mana >= card.cost and caller.hand.any(func(card): return card.id == card_id):
 		caller.mana-=card.cost
 		caller.active_cards.append(card)
@@ -76,7 +75,7 @@ func request_play_card(card_id):
 			if hand_card.id == card_id:
 				caller.hand.erase(hand_card)
 				break
-	ServerState.sync_public_data(caller.id)
+	ServerState.sync_without_enemy_mana(caller.id)
 
 func simulate_enemy_card():
 	#var card = player2.hand.pick_random()

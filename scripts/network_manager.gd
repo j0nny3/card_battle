@@ -33,6 +33,11 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
+	RoomManager.room_filled.connect(_on_room_filled)
+
+func _on_room_filled(room, users):
+	for user in users:
+		load_game.rpc_id(user)
 
 @rpc("reliable", "any_peer")
 func request_join_room(room_id):
@@ -65,9 +70,8 @@ func create_game():
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
 @rpc("reliable")
-func load_game(game_scene_path):
+func load_game(game_scene_path = battle_scene_string):
 	get_tree().change_scene_to_file(game_scene_path)
-
 
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "reliable")
@@ -108,10 +112,10 @@ func _register_player(new_player_info):
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
 
-
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
+	RoomManager.remove_user_from_rooms(id)
 	ServerState.reset_state()
 
 func _on_connected_ok():

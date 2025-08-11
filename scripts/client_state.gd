@@ -77,7 +77,7 @@ func sync(data: Dictionary):
 	health=data.get("health")
 	enemy_health=data.get("enemy_health", 10)
 	mana=data.get("mana")
-	enemy_mana=data.get("enemy_mana", 3)
+	enemy_mana = data.get("enemy_mana", enemy_mana)
 
 	var hand_ids=data.get("hand")
 	var new_hand : Array[Card]

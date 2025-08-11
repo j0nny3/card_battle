@@ -1,8 +1,8 @@
 class_name Room 
 extends Node
 
-signal room_filled(users: Array[User])
-signal users_changed(users: Array[User])
+signal room_filled(room, users)
+signal users_changed(users)
 
 var id: int
 var maximum_size: int = 2
@@ -14,7 +14,7 @@ func add_user(user) -> bool:
 	users.append(user)
 	users_changed.emit(users)
 	if is_room_full():
-		room_filled.emit(users)
+		room_filled.emit(id, users)
 	return true
 
 func remove_user(user) -> bool:

@@ -35,6 +35,12 @@ func get_public_player_data_as_dict(player_id) -> Dictionary:
 
 	return data
 
+func sync_without_enemy_mana(player_id):
+	var data = get_public_player_data_as_dict(player_id)
+	data.erase("enemy_mana")
+	print("sync data to player: " +str(player_id)+ " with data: "+str(data))
+	ClientState.sync.rpc_id(player_id, data)
+
 func sync_public_data(player_id):
 	var data = get_public_player_data_as_dict(player_id)
 	print("sync data to player: " +str(player_id)+ " with data: "+str(data))
@@ -49,5 +55,3 @@ func reveal_enemy_active_cards():
 				enemy_active_card_id_list.append(card.id)
 			data["enemy_active_cards"] = enemy_active_card_id_list
 			ClientState.reveal.rpc_id(player.id, data)
-
-
