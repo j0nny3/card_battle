@@ -17,7 +17,7 @@ func _on_player_connect(player_id, player_info):
 	if multiplayer.get_unique_id() == 1:
 		var new_player = Player.new(Player.Type.HUMAN)
 		new_player.id = player_id
-		new_player.name = player_info["name"]
+		new_player.name = player_info["username"]
 		CardManager.load_deck(new_player)
 		ServerState.players[player_id] = new_player
 		print(new_player)

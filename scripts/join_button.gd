@@ -9,7 +9,7 @@ func _on_button_pressed():
 	username = get_parent().get_node("NameEdit").text
 	if not username :
 		username =get_parent().get_node("NameEdit").placeholder_text 
-	NetworkManager.player_info["name"] = username
+	NetworkManager.player_info["username"] = username
 	var error =NetworkManager.join_server(address)
 	if error:
 		print(error)

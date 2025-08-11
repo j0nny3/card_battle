@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bflm271wcvpbq"]
+
+[ext_resource type="Script" path="res://scenes/room_list.gd" id="1_yhyar"]
+
+[node name="RoomList" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yhyar")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 53.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "Rooms"
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 855.0
+offset_bottom = 173.0

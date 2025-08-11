@@ -14,7 +14,7 @@ func _on_offline_pressed():
 	mode_chosen.emit("offline")
 
 func _on_join_pressed():
-	mode_chosen.emit("join")
+	mode_chosen.emit("official")
 
 func _on_host_pressed():
 	mode_chosen.emit("host")

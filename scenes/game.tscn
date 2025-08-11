@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/mana.gd" id="3_vvnan"]
 [ext_resource type="Script" path="res://scripts/enemy_health_bar.gd" id="4_karlr"]
 [ext_resource type="Script" path="res://scripts/enemy_mana.gd" id="5_2agta"]
-[ext_resource type="Script" path="res://scenes/hand_ui.gd" id="6_y48e5"]
+[ext_resource type="Script" path="res://entities/hand_ui.gd" id="6_y48e5"]
 [ext_resource type="Script" path="res://scripts/end_button.gd" id="7_au1xc"]
 
 [node name="Game" type="Node2D"]

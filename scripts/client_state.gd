@@ -9,6 +9,12 @@ signal enemy_mana_changed
 signal hand_changed
 signal active_cards_changed
 signal enemy_active_cards_changed
+signal rooms_changed
+
+var rooms: Dictionary:
+	set(new_value):
+		rooms = new_value
+		rooms_changed.emit(rooms)
 
 var username: String
 var health: int = 10:

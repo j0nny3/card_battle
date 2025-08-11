@@ -6,7 +6,7 @@ signal users_changed(users: Array[User])
 
 var id: int
 var maximum_size: int = 2
-var users: Array[User]
+var users = []
 
 func add_user(user) -> bool:
 	if is_room_full():
@@ -25,3 +25,13 @@ func remove_user(user) -> bool:
 
 func is_room_full() -> bool:
 	return users.size() == maximum_size
+
+static func from_dict(dict: Dictionary):
+	var room = Room.new()
+	room.id= dict["id"]
+	for user_dict in dict.keys():
+		var user = User.from_dict(user_dict)
+		room.users.append(user)
+	room.users= dict["id"]
+	room.id= dict["id"]
+	return room

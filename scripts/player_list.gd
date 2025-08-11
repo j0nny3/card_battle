@@ -8,7 +8,7 @@ func _ready():
 
 func _on_player_connected(peer_id, player_info):
 	var label = Label.new()
-	label.text = str(peer_id) + ": "+ player_info["name"]
+	label.text = str(peer_id) + ": "+ player_info["username"]
 	add_child(label)
 	connected_player_labels.append(label)
 

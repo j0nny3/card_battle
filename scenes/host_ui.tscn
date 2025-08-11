@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3q4u4215d4k"]
 
-[ext_resource type="Script" path="res://scenes/host_ui.gd" id="1_cgvwy"]
+[ext_resource type="Script" path="res://entities/host_ui.gd" id="1_cgvwy"]
 [ext_resource type="PackedScene" uid="uid://dm7yd5a8lyhhf" path="res://scenes/player_list.tscn" id="1_cjm4w"]
 
 [node name="HostUI" type="Control"]
@@ -27,3 +27,12 @@ offset_right = 444.0
 offset_bottom = 153.0
 text = "Start Game
 "
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = -1.0
+offset_right = 754.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 64
+text = "currently hosting"

@@ -1,19 +1,20 @@
 extends VBoxContainer
 
-
+@onready var user_list = $UserList
+@onready var join_button = $JoinRoomButton
+@onready var room_id_label = $RoomId
 var room_id
-var players_in_room: Dictionary
+var users
 
 func _ready():
-	pass
-	#NetworkManager.room_joined.connect(_on_player_entered)_
-	#NetworkManager.room_left.connect(_on_player_left)_
+	room_id_label.text = str(room_id)
+	join_button.pressed.connect(_on_join_pressed)
+	for user in users:
+		var user_label = Label.new()
+		var username = NetworkManager.players.get(user).get("username")
+		user_label.text = username
+		user_list.add_child(user_label)
 
-func _on_player_entered(player_name):
-	var label = Label.new()
-	label.text = player_name
 
-func _on_player_left(player_name):
-	for child in get_children():
-		if child.text == player_name:
-			child.queue_free()
+func _on_join_pressed():
+	NetworkManager.request_join_room.rpc_id(1, room_id)

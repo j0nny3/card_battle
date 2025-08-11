@@ -19,7 +19,7 @@ var rooms = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"username": "Name"}
 
 var players_loaded = 0
 var battle_scene_string = "res://scenes/game.tscn"
@@ -33,17 +33,15 @@ func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_ok)
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	player_connected.connect(_on_player_joined)
 
-func join_room(room_id):
-	var player_id = multiplayer.get_remote_sender_id()
-	#player[player_id][r
-
-func _on_player_joined(peer_id, _player_info):
-	if multiplayer.get_unique_id() == 1:
-		if players.keys().size() == 2 :
-			print("server starts game with players: "+ str(players))
-			load_game.rpc(battle_scene_string)
+@rpc("reliable", "any_peer")
+func request_join_room(room_id):
+	var user_id = multiplayer.get_remote_sender_id()
+	var added = RoomManager.add_user_to_room(user_id, room_id)
+	for player in ServerState.players:
+		update_rooms(player)
+	return added
+	
 
 func join_server(address = ""):
 	if address.is_empty():
@@ -52,9 +50,7 @@ func join_server(address = ""):
 	var error = peer.create_client(address, PORT)
 	if error:
 		return error
-	else:
-		multiplayer.multiplayer_peer = peer
-		print("joined game")
+	multiplayer.multiplayer_peer = peer
 
 
 func create_game():
@@ -63,23 +59,18 @@ func create_game():
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
-
-	print("created game")
-
-func remove_multiplayer_peer():
-	multiplayer.multiplayer_peer = null
-	players.clear()
-
+	RoomManager.create_room()
+	print("created server")
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
-@rpc( "reliable")
+@rpc("reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 
 
 # Every peer will call this when they have loaded the game scene.
-@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "reliable")
 func player_loaded():
 	if multiplayer.is_server():
 		players_loaded += 1
@@ -91,19 +82,29 @@ func player_loaded():
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
-func _on_player_connected(id):
-	#dont let server message other people
-#	if multiplayer.get_unique_id() == 1:
-#		return
-	print("player connected, id:" +str(id))
-	_register_player.rpc_id(id, player_info)
+func _on_player_connected(user_id):
+	print("player connected, user_id:" +str(user_id))
+	if multiplayer.get_unique_id() == 1:
+		update_rooms(user_id)
+	_register_player.rpc_id(user_id, player_info)
+
+func update_rooms(user_id):
+	publish_room_list.rpc_id(user_id, RoomManager.rooms_to_dict())
+	
+@rpc("reliable")
+func publish_room_list(_rooms: Dictionary):
+	print("update rooms for "+str(multiplayer.get_unique_id()))
+	#var parsed_rooms = RoomManager.rooms_from_dict(_rooms)
+	#print(parsed_rooms)
+	#ClientState.rooms = parsed_rooms
+	ClientState.rooms = _rooms
 
 
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):
-#	if multiplayer.get_unique_id() == 1:
-#		return
 	var new_player_id = multiplayer.get_remote_sender_id()
+	if new_player_id == 1:
+		return #dont want server to add itself
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
 
