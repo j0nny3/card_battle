@@ -1,3 +1,4 @@
+class_name CardManager
 extends Node
 
 signal drawn
@@ -12,7 +13,7 @@ var effects = {
 	"heal": func(user, target, n, m): user.heal(n),
 	"block": func(user, target, n, m): return,
 	"stab": func(user, target, n, m): user.take_damage_range(n,m),
-	"draw": func (user,target, n,  m): CardManager.draw(user, n),
+	"draw": func (user,target, n,  m): draw(user, n),
 	"mana_gain": func (user,target, n,  m): user.mana+=n ,
 }
 
@@ -57,10 +58,3 @@ func draw(player, n=1):
 	var drawn_cards = player.deck.cards.slice(0, n)
 	player.hand.append_array(drawn_cards)
 	player.deck.cards = player.deck.cards.slice(n)
-
-func get_card_by_instance_id(id):
-	for player in BattleManager.player_dict :
-		for card in player.hand:
-			if card.instance_id == id:
-				return card
-	return null

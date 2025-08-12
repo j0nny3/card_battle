@@ -8,7 +8,6 @@ enum Type{HUMAN, NPC}
 
 var id: int
 var username: String
-var room: int
 var health: int = 10
 var armour: int = 0
 var max_health: int = 10

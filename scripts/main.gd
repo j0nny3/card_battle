@@ -19,6 +19,7 @@ func _on_mode_chosen(mode):
 	if mode == "offline":
 		var battle_instance = battle_scene.instantiate()
 		add_child(battle_instance)
+		battle_instance.player_loaded.connect(_on_battle_loaded)
 	if mode == "join":
 		var load_instance = load_scene.instantiate()
 		add_child(load_instance)
@@ -29,3 +30,5 @@ func _on_mode_chosen(mode):
 		var load_instance = lobby_scene.instantiate()
 		add_child(load_instance)
 
+func _on_battle_loaded():
+	pass

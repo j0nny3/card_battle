@@ -68,7 +68,7 @@ func reveal(data: Dictionary):
 	var enemy_active_ids=data.get("enemy_active_cards", [])
 	var new_enemy_active: Array[Card]
 	for id in enemy_active_ids:
-		new_enemy_active.append(CardManager.card_db.get(id))
+		new_enemy_active.append(id)
 	enemy_active_cards = new_enemy_active
 
 
@@ -82,17 +82,17 @@ func sync(data: Dictionary):
 	var hand_ids=data.get("hand")
 	var new_hand : Array[Card]
 	for id in hand_ids:
-		new_hand.append(CardManager.card_db.get(id))
+		new_hand.append((id))
 	hand = new_hand
 
 	var active_ids=data.get("active_cards")
 	var new_active : Array[Card]
 	for id in active_ids:
-		new_active.append(CardManager.card_db.get(id))
+		new_active.append((id))
 	active_cards = new_active
 
 	var enemy_active_ids=data.get("enemy_active_cards", [])
 	var new_enemy_active: Array[Card]
 	for id in enemy_active_ids:
-		new_enemy_active.append(CardManager.card_db.get(id))
+		new_enemy_active.append((id))
 	enemy_active_cards = new_enemy_active

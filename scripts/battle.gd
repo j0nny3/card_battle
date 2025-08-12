@@ -1,12 +1,14 @@
 extends Node
 
+signal player_loaded
+
 @onready var hand_ui = $%HandUI
 @onready var active_area_slot = $%ActiveAreaPlayerUI
 @onready var enemy_active_area_slot = $%ActiveAreaEnemyUI
 
 func _ready():
 	hand_ui.update_cards(ClientState.hand)
-	NetworkManager.player_loaded.rpc_id(1)
+	player_loaded.emit()
 	ClientState.hand_changed.connect(_on_hand_changed)
 	ClientState.active_cards_changed.connect(_on_active_cards_changed)
 	ClientState.enemy_active_cards_changed.connect(_on_enemy_active_cards_changed)

@@ -3,8 +3,8 @@ extends VBoxContainer
 var connected_player_labels = []
 
 func _ready():
-	NetworkManager.player_connected.connect(_on_player_connected)
-	NetworkManager.player_disconnected.connect(_on_player_disconnected)
+	NetworkManager.user_connected.connect(_on_player_connected)
+	NetworkManager.user_disconnected.connect(_on_player_disconnected)
 
 func _on_player_connected(peer_id, player_info):
 	var label = Label.new()
