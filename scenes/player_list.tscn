@@ -5,7 +5,7 @@
 [node name="PlayerList" type="VBoxContainer"]
 offset_left = 133.0
 offset_top = 107.0
-offset_right = 215.0
+offset_right = 279.0
 offset_bottom = 214.0
 script = ExtResource("1_4oc6g")
 

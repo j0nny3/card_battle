@@ -1,7 +1,10 @@
 extends Panel
 
+signal card_clicked
+
 var card: Card
 var is_in_hand = true
+
 
 @onready var name_label = $VBoxContainer/NameLabel
 @onready var cost_label = $VBoxContainer/CostLabel
@@ -20,7 +23,7 @@ func update_ui():
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		BattleManager.request_play_card.rpc_id(1,card.id)
+		card_clicked.emit(card)
 	
 func _on_card_played():
 	if is_in_hand:

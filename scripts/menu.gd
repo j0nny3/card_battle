@@ -1,11 +1,12 @@
 extends Control
 
 signal mode_chosen
+signal official_chosen(username: String)
+signal connect_requested(address: String, username)
 
 @onready var official_name_edit = $OfficialJoinOptions/OfficialPlayerName
 
 func _ready():
-	$OfflineButton.pressed.connect(_on_offline_pressed)
 	$JoinOptions/JoinButton.pressed.connect(_on_join_pressed)
 	$OfficialJoinOptions/OfficialJoinButton.pressed.connect(_on_official_join_pressed)
 	$HostButton.pressed.connect(_on_host_pressed)
@@ -14,20 +15,12 @@ func _on_offline_pressed():
 	mode_chosen.emit("offline")
 
 func _on_join_pressed():
-	mode_chosen.emit("official")
+	var address = $JoinOptions/AddressEdit.text
+	var username = $JoinOptions/UsernameEdit.text
+	connect_requested.emit(address, username)
 
 func _on_host_pressed():
 	mode_chosen.emit("host")
 
 func _on_official_join_pressed():
-	mode_chosen.emit("official")
-	var address = "cardbattle.duckdns.org"
-	var username: String
-	username = official_name_edit.text
-	if not username:
-		username = "Player"
-
-	NetworkManager.player_info["name"] = username
-	var error = NetworkManager.join_server(address)
-	if error:
-		mode_chosen.emit("error")
+	official_chosen.emit(official_name_edit.text)

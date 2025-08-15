@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://khi2ef6epjh"]
+
+[ext_resource type="Script" path="res://scenes/router.gd" id="1_gikv8"]
+
+[node name="Router" type="Node"]
+script = ExtResource("1_gikv8")

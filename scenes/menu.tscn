@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx0lksnaa5nvm"]
+[gd_scene load_steps=3 format=3 uid="uid://dx0lksnaa5nvm"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q46yr"]
-[ext_resource type="Script" path="res://scripts/offline_button.gd" id="2_iod4m"]
-[ext_resource type="Script" path="res://scripts/join_button.gd" id="2_w4u1s"]
-[ext_resource type="Script" path="res://scripts/host_button.gd" id="3_n2pil"]
-[ext_resource type="Script" path="res://scenes/official_join_button.gd" id="5_5ts3p"]
 
 [sub_resource type="Theme" id="Theme_nknp2"]
 
@@ -28,7 +24,7 @@ offset_bottom = 163.0
 layout_mode = 2
 text = "Join custom server"
 
-[node name="AddresEdit" type="LineEdit" parent="JoinOptions"]
+[node name="AddressEdit" type="LineEdit" parent="JoinOptions"]
 layout_mode = 2
 placeholder_text = "address"
 
@@ -36,32 +32,13 @@ placeholder_text = "address"
 layout_mode = 2
 text = "Player Name"
 
-[node name="NameEdit" type="LineEdit" parent="JoinOptions"]
+[node name="UsernameEdit" type="LineEdit" parent="JoinOptions"]
 layout_mode = 2
 placeholder_text = "Player"
 
 [node name="JoinButton" type="Button" parent="JoinOptions"]
 layout_mode = 2
 text = "Join"
-script = ExtResource("2_w4u1s")
-
-[node name="OfflineButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 446.0
-offset_top = 587.0
-offset_right = 541.0
-offset_bottom = 618.0
-text = "Play offline"
-script = ExtResource("2_iod4m")
-
-[node name="Label" type="Label" parent="OfflineButton"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 35.0
-offset_right = 97.0
-offset_bottom = 93.0
-text = "(Disabled for now)
-"
 
 [node name="HostButton" type="Button" parent="."]
 layout_mode = 0
@@ -71,7 +48,6 @@ offset_right = 979.0
 offset_bottom = 598.0
 text = "Host game
 "
-script = ExtResource("3_n2pil")
 
 [node name="Label" type="Label" parent="HostButton"]
 layout_mode = 0
@@ -105,7 +81,6 @@ placeholder_text = "Player"
 [node name="OfficialJoinButton" type="Button" parent="OfficialJoinOptions"]
 layout_mode = 2
 text = "Join"
-script = ExtResource("5_5ts3p")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

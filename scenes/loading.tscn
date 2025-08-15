@@ -16,9 +16,17 @@ script = ExtResource("1_57cbf")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 289.0
-offset_top = 158.0
-offset_right = 750.0
-offset_bottom = 426.0
+offset_left = 177.0
+offset_top = 18.0
+offset_right = 638.0
+offset_bottom = 286.0
 text = "Loading"
 label_settings = SubResource("LabelSettings_bqhj7")
+
+[node name="ErrorLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 185.0
+offset_right = 600.0
+offset_bottom = 358.0
+theme_override_font_sizes/font_size = 16
